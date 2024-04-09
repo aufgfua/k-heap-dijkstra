@@ -26,8 +26,8 @@ chrono::milliseconds dijkstraDuration;
 #define READ(x) cin >> x
 #define DIMACS 0
 #define GENERATE 1
-#define LOGS true
-#define RODADAS 20
+#define LOGS false
+#define RODADAS 1
 
 template <int N>
 class KNode {
@@ -570,7 +570,7 @@ int main(int argc, char *argv[]) {
     vector<Node*> graph;
     int nodesCount, edgeCount;
 
-    char processing = GENERATE;
+    char processing = DIMACS;
     if(processing == GENERATE){
         generateGraph(argc, argv, graph, nodesCount, edgeCount);
     } else if (processing == DIMACS){
@@ -580,7 +580,6 @@ int main(int argc, char *argv[]) {
     for(int i = 0; i < RODADAS; i++){
         roda(argc, argv, nodesCount, edgeCount, graph, processing);
         reset(graph);
-        LOG(i);
         if(processing == GENERATE){
             graph.clear();
             generateGraph(argc, argv, graph, nodesCount, edgeCount);
